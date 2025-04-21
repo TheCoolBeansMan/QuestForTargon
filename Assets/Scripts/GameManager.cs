@@ -34,8 +34,10 @@ public class GameManager : MonoBehaviour
     private bool isDismounted;
     private bool start;
 
+
     private void Start()
     {
+
         attack = 0;
         xp = 0;
         isDismounted = false;
@@ -680,12 +682,15 @@ public class GameManager : MonoBehaviour
 
     public void Movement()
     {
+
         isDismounted = false;
         currDice = Random.Range(1, 4);
         currSpace += currDice;
         if (currSpace > 29)
             currSpace = 29;
         start = true;
+
+
     }
 
     public void Dismount()
@@ -701,7 +706,7 @@ public class GameManager : MonoBehaviour
     {
         start = false;
         rolledDamage = Random.Range(1, 7) + attack;
-        
+
         if (rolledDamage >= enemyHP)
         {
             xp += 2;
