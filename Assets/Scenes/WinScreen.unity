@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.745283, g: 0.4805094, b: 0.2988163, a: 1}
+  m_Color: {r: 1, g: 0.41228068, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -340,8 +340,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "After slaying the Guardian \n\n&\n\ntaking the TARGON PILL \n\nyou have
-    ASCENDED.\n\n\nVICTOY IS YOURS\n\n\n\nnow leave"
+  m_Text: "After becoming the ROYAL KNIGHT\n\n&\n\ntaking the TARGON PILL \n\nyou
+    have ASCENDED.\n\n\nVICTROY IS YOURS\n\n\n\nnow leave"
 --- !u!222 &618274729
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -469,7 +469,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: af93a85425e27604f8c30151c52a9555, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
