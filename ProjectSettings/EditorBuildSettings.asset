@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: 11e21604e9d00d947a02bd4d8911d7a6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainGameScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinScreen.unity
     guid: 1e912f9f745457440b3b4e65260d1b03
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: df34df8ade942b54892977d8ea64c955
   m_configObjects: {}

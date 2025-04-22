@@ -12,11 +12,34 @@ public class TestMazeManager : MonoBehaviour
     public GameObject[] objectsToDeactivate;
     public GameObject[] objectsToActivate;
     private PlayerMover mover;
-    public Button eventButton;
+    public GameObject eventButton;
     public int sendInteger;
+
+    public GameObject currPlayerPortrait;
+    public Sprite[] playerPortraits;
+
+    public GameObject currGamePortrait;
+    public Sprite[] gamePortraits;
+
+    public Text gameText;
+    public GameObject attackButton;
+    public GameObject deathButton;
+    public GameObject winButton;
+
+    public Text treasureText;
+    public Text attackText;
+
+    private int rolledDamage;
+    private int enemyHP;
+    private int attack;
+    private int treasures;
 
     void Start()
     {
+        currPlayerPortrait.GetComponent<Image>().sprite = playerPortraits[0];
+        treasures = 0;
+        attack = 0;
+        attackText.text = "Aura (" + attack.ToString() + ")"; 
         mover = player.GetComponent<PlayerMover>();
         UpdateStepsText();
         UpdateButtonStates();
@@ -123,6 +146,12 @@ public class TestMazeManager : MonoBehaviour
         diceButton.interactable = true;
 
     }
+
+    private void Update()
+    {
+        attackText.text = "Aura (" + attack.ToString() + ")";
+    }
+
     private void DetectObjectUnderPlayer()
     {
         Vector3 origin = player.transform.position;
@@ -142,101 +171,206 @@ public class TestMazeManager : MonoBehaviour
 
             if (obj.tag == "0")
             {
-                sendInteger = 0;
+                attack += 3;
+                gameText.text = "You make it back to the start of the maze where you set up camp and consume some of your emergency soylent. Your aura goes up by 3";
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[0];
             }
             else if (obj.tag == "1")
             {
-                sendInteger = 1;
+                eventButton.SetActive(false);
+                attackButton.SetActive(true);
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[1];
+                gameText.text = "You go in expecting a fight against an evil minotaur, but to your despair, it turns out to be a mini-minotaur instead! Brace for Impact. Its do or die time GAMER!";
+                enemyHP = 25;
+                
             }
             else if (obj.tag == "2")
             {
-                sendInteger = 2;
+                eventButton.SetActive(false);
+                attackButton.SetActive(true);
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[2];
+                gameText.text = "Wandering through the maze, you find a maze gnome. Thankfully for you, short people were denied rights after the last senate meeting. So get ready to attack!";
+                enemyHP = 3;
             }
             else if (obj.tag == "3")
             {
-                sendInteger = 3;
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[3];
+                gameText.text = "Lucky you Targian! You managed to find the Princess' beloved heart locket!";
+                treasures++;
+                treasureText.text = treasures.ToString();
             }
             else if (obj.tag == "4")
             {
-                sendInteger = 4;
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[4];
+                gameText.text = "Lucky you Targian! You managed to find the Princess' beloved Ring!";
+                treasures++;
+                treasureText.text = treasures.ToString();
             }
             else if (obj.tag == "5")
             {
-                sendInteger = 5;
+                eventButton.SetActive(false);
+                attackButton.SetActive(true);
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[5];
+                gameText.text = "You find a friendly face, Gustavo. Sadly for you, Gustavo is also chasing after the princesses heart. And all is fair in love and war, so KILL HIM NOW!";
+                enemyHP = 6;
             }
             else if (obj.tag == "6")
             {
-                sendInteger = 6;
+                eventButton.SetActive(false);
+                attackButton.SetActive(true);
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[6];
+                gameText.text = "Yikes! Thats one creepy crawly! Quick Kill it before it kills you!";
+                enemyHP = 5;
             }
             else if (obj.tag == "7")
             {
-                sendInteger = 7;
+                eventButton.SetActive(false);
+                attackButton.SetActive(true);
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[7];
+                gameText.text = "Todd Howard appears before you. Hes trying to get you to buy some of his new DLC but ya tell him you already did last generation! Looks like theres only one way outta this.";
+                enemyHP = 10;
             }
             else if (obj.tag == "8")
             {
-                sendInteger = 8;
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[8];
+                gameText.text = "As you wander around the labrynth you fall into a comically large hole and get sent back to the start, oops!";
+                //reset plarer position
             }
             else if (obj.tag == "9")
             {
-                sendInteger = 9;
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[9];
+                gameText.text = "Lucky you Targian! You managed to find the Princess' beloved Bracelet!";
+                treasures++;
+                treasureText.text = treasures.ToString();
             }
             else if (obj.tag == "10")
             {
-                sendInteger = 10;
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[10];
+                gameText.text = "Lucky you Targian! You managed to find the Princess' beloved Diary!";
+                treasures++;
+                treasureText.text = treasures.ToString();
             }
             else if (obj.tag == "11")
             {
-                sendInteger = 11;
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[11];
+                gameText.text = "Lucky you Targian! You managed to find the Princess' beloved Money Pouch!";
+                treasures++;
+                treasureText.text = treasures.ToString();
             }
             else if (obj.tag == "12")
             {
-                sendInteger = 12;
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[12];
+                gameText.text = "Lucky you Targian! You managed to find the Princess' beloved Mirror!";
+                treasures++;
+                treasureText.text = treasures.ToString();
             }
             else if (obj.tag == "13")
             {
-                sendInteger = 13;
+                eventButton.SetActive(false);
+                attackButton.SetActive(true);
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[13];
+                gameText.text = "Theres a Zombie on your lawn?!?!?! Unfortunatley ya didn't bring any plants with you, so its all up to you to cute this fiend down.";
+                enemyHP = 12;
             }
             else if (obj.tag == "14")
             {
-                sendInteger = 15;
+                eventButton.SetActive(false);
+                attackButton.SetActive(true);
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[14];
+                gameText.text = "A skeleton blocks your path. He seems like a friendly guy but hes way to spooky to let live.";
+                enemyHP = 15;
+            }
+            else if (obj.tag == "15")
+            {
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[15];
+                gameText.text = "Lucky you Targian! You managed to find the Princess' beloved Hair Brush";
+                treasures++;
+                treasureText.text = treasures.ToString();
             }
             else if (obj.tag == "16")
             {
-                sendInteger = 16;
+                eventButton.SetActive(false);
+                attackButton.SetActive(true);
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[16];
+                gameText.text = "A pirate stops you and demands you hand him over all your treasures. Nuh uh buddy. These are the princess'. Looks like someones about to get GAMERED!";
+                enemyHP = 18;
             }
             else if (obj.tag == "17")
             {
-                sendInteger = 17;
+                eventButton.SetActive(false);
+                attackButton.SetActive(true);
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[17];
+                gameText.text = "A kind old man is fishing in a small pond in the maze. You notice however that his fishing liscense is expired. Time to deliver justice and FIGHT!";
+                enemyHP = 20;
             }
             else if (obj.tag == "18")
             {
-                sendInteger = 18;
+                attack =+ 15;
+                gameText.text = "Hidden in the labrynth you find the ultimate weakness of all minotaurs. TAR TAR SAUCE! You are sure to win now! Your aura goes up by 15";
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[18];
+                currPlayerPortrait.GetComponent<Image>().sprite = playerPortraits[1];
             }
             else if (obj.tag == "19")
             {
-                sendInteger = 19;
+                eventButton.SetActive(false);
+                attackButton.SetActive(true);
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[19];
+                gameText.text = "Gurading the princess you see none other then her head knight. Markiplier. Seems he wants the treasures for himself! Not gonna happen SUCKAPLIER!";
+                enemyHP = 23;
             }
             else if (obj.tag == "20")
             {
-                sendInteger = 20;
+                if (treasures >= 7)
+                {
+                    eventButton.SetActive(false);
+                    winButton.SetActive(true);
+                    currGamePortrait.GetComponent<Image>().sprite = gamePortraits[23];
+                    gameText.text = "You collect all of the princesses treasures. She is delighted to see you and decides to appoint you as her new Knight! Good Job GAMER!";
+                    
+                }
+                else
+                {
+                    attack -= 5;
+                    currGamePortrait.GetComponent<Image>().sprite = gamePortraits[20];
+                    gameText.text = "Someone doesn't have enough treasure!. Your aura of poverty is mogged by the princesses affluant aura knocking you to the start and making you lose 5 aura!";
+                    //reset plarer position
+                }
             }
             else if (obj.tag == "21")
             {
-                sendInteger = 21;
+                attack += 2;
+                gameText.text = "You find a secluded part of the maze and decide to begin aura farming. Your aura goes up by 2";
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[21];
             }
             else if (obj.tag == "22")
             {
-                sendInteger = 22;
-            }
-            else if (obj.tag == "23")
-            {
-                sendInteger = 23;
+                attack -= 2;
+                gameText.text = "You find a cute dungeon slime and attempt to 'use rizz'. Sadly you have no rizz to speak of. Your aura goes down by 2";
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[22];
             }
 
         }
         else
         {
             Debug.Log("No object found under player.");
+        }
+    }
+    public void Attack()
+    {
+        rolledDamage = Random.Range(1, 7) + attack;
+
+        if (rolledDamage >= enemyHP)
+        {
+            gameText.text = "Using your aura you deal " + (rolledDamage + attack).ToString() + " damage and mog the enemy! Well done Targinian! Your aura goes up by 1";
+            attack += 1;
+            attackButton.SetActive(false);
+            eventButton.SetActive(true);
+        }
+        else
+        {
+            gameText.text = "You project your aura but only deal " + (rolledDamage + attack).ToString() + " damage. The enemy outrizzes you and instantly kills you. Kinda cringe...";
+            attackButton.SetActive(false);
+            deathButton.SetActive(true);
         }
     }
 }
