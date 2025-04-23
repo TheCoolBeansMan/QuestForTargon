@@ -596,7 +596,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "You are the Targian. With asperations of becoming the princess' royal
+    knight. You set out to the malevolent maze in search of her 7 missing treasures.
+    But the place is home to an evil minotaur. So be careful! \n\nRoll the dice to
+    move a certain number of spaces. Defeat enemies to gain aura to get stronger
+    all while collecting treasures. Watch out for traps and for the minotaur along
+    the way to find the princess!"
 --- !u!222 &1310096966
 CanvasRenderer:
   m_ObjectHideFlags: 0

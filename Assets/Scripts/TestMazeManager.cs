@@ -150,6 +150,7 @@ public class TestMazeManager : MonoBehaviour
     private void Update()
     {
         attackText.text = "Aura (" + attack.ToString() + ")";
+        treasureText.text = treasures.ToString();
     }
 
     private void DetectObjectUnderPlayer()
