@@ -218,7 +218,7 @@ public class TestMazeManager : MonoBehaviour
             else if (obj.tag == "1")
             {
                 eventButton.SetActive(false);
-               MinotaurButton.SetActive(true);
+                MinotaurButton.SetActive(true);
                 gameText.text = "Minotaur Encountered!";
                 currGamePortrait.GetComponent<Image>().sprite = gamePortraits[1];
             }
@@ -229,7 +229,7 @@ public class TestMazeManager : MonoBehaviour
             }
             else if (obj.tag == "3")
             {
-                if (hasLocket == false)
+                if (hasLocket == false && isBitten == false)
                 {
                     currGamePortrait.GetComponent<Image>().sprite = gamePortraits[3];
                     gameText.text = "Lucky you Targian! You managed to find the Princess' beloved heart locket!";
@@ -247,7 +247,7 @@ public class TestMazeManager : MonoBehaviour
             }
             else if (obj.tag == "4")
             {
-                if (hasRing == false)
+                if (hasRing == false && isBitten == false)
                 {
                     currGamePortrait.GetComponent<Image>().sprite = gamePortraits[4];
                     gameText.text = "Lucky you Targian! You managed to find the Princess' beloved ring !";
@@ -359,7 +359,7 @@ public class TestMazeManager : MonoBehaviour
             }
             else if (obj.tag == "9")
             {
-                if (hasBracelet == false)
+                if (hasBracelet == false && isBitten == false)
                 {
                     currGamePortrait.GetComponent<Image>().sprite = gamePortraits[9];
                     gameText.text = "Lucky you Targian! You managed to find the Princess' beloved bracelet!";
@@ -376,7 +376,7 @@ public class TestMazeManager : MonoBehaviour
             }
             else if (obj.tag == "10")
             {
-                if (hasDiary == false)
+                if (hasDiary == false && isBitten == false)
                 {
                     eventButton.SetActive(false);
                     ReadButton.SetActive(true);
@@ -396,7 +396,7 @@ public class TestMazeManager : MonoBehaviour
             }
             else if (obj.tag == "11")
             {
-                if (hasPouch == false)
+                if (hasPouch == false && isBitten == false)
                 {
                     currGamePortrait.GetComponent<Image>().sprite = gamePortraits[11];
                     gameText.text = "Lucky you Targian! You managed to find the Princess' beloved money pouch!";
@@ -413,7 +413,7 @@ public class TestMazeManager : MonoBehaviour
             }
             else if (obj.tag == "12")
             {
-                if (hasMirror == false)
+                if (hasMirror == false && isBitten == false)
                 {
                     currGamePortrait.GetComponent<Image>().sprite = gamePortraits[12];
                     gameText.text = "Lucky you Targian! You managed to find the Princess' beloved mirror!";
@@ -443,7 +443,7 @@ public class TestMazeManager : MonoBehaviour
             }
             else if (obj.tag == "15")
             {
-                if (hasBrush == false)
+                if (hasBrush == false && isBitten == false)
                 {
                     currGamePortrait.GetComponent<Image>().sprite = gamePortraits[15];
                     gameText.text = "Lucky you Targian! You managed to find the Princess' beloved heart locket!";
