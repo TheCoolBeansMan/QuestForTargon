@@ -31,6 +31,7 @@ public class TestMazeManager : MonoBehaviour
     public GameObject DontReadButton;
     public GameObject StopButton;
     public GameObject TeleportButton;
+    public GameObject FinalButton;
     public Text treasureText;
 
     private int rolledDamage;
@@ -46,6 +47,15 @@ public class TestMazeManager : MonoBehaviour
     public GameObject pouch;
     public GameObject mirror;
     public GameObject horn;
+
+    [Header("Diary Item Buttons")]
+    public GameObject locketB;
+    public GameObject ringB;
+    public GameObject braceletB;
+    public GameObject brushB;
+    public GameObject pouchB;
+    public GameObject mirrorB;
+    
 
     [Header("Minotaur Fight")]
     public Image playerHealthBar;
@@ -354,7 +364,7 @@ public class TestMazeManager : MonoBehaviour
             {
                 currGamePortrait.GetComponent<Image>().sprite = gamePortraits[8];
                 gameText.text = "As you wander around the labrynth you fall into a comically large hole and get sent back to the start, oops!";
-                
+
                 player.transform.position = new Vector3(-3.15f, -4.42f, -0.4169378f);
             }
             else if (obj.tag == "9")
@@ -473,7 +483,7 @@ public class TestMazeManager : MonoBehaviour
                 player.transform.position = new Vector3(-0.1500003f, 0.07999992f, -0.4169378f);
                 eventButton.SetActive(false);
                 MinotaurButton.SetActive(true);
-               
+
                 currGamePortrait.GetComponent<Image>().sprite = gamePortraits[1];
             }
             else if (obj.tag == "18")
@@ -486,6 +496,18 @@ public class TestMazeManager : MonoBehaviour
             else if (obj.tag == "19")
             {
                 //Princess Check
+                currGamePortrait.GetComponent<Image>().sprite = gamePortraits[19];
+                if (treasures == 7 || hasHorn == true)
+                {
+                    gameText.text = "Congratualtions, the princess accepts your offers.";
+                    FinalButton.SetActive(true);
+                }
+                else
+                {
+                    gameText.text = "The princes thinks that you are a wimp. Sad";
+                    deathButton.SetActive(true);
+                }
+                
             }
         }
         else
@@ -655,11 +677,11 @@ public class TestMazeManager : MonoBehaviour
             return;
         }
 
-        playerHealth -= 4;
+        playerHealth -= 3;
         if (playerHealth < 0) playerHealth = 0;
 
         playerHealthBar.fillAmount = playerHealth/20;
-        gameText.text = "Minotaur attacks and deals 4 damage to Player!";
+        gameText.text = "Minotaur attacks and deals 3 damage to Player!";
        
 
         isPlayerTurn = true;
@@ -678,14 +700,18 @@ public class TestMazeManager : MonoBehaviour
         else if (minotaurHealth <= 0)
         {
             gameText.text = "Player Wins!";
+            hasHorn = true;
+            horn.SetActive(true);
+            eventButton.SetActive(true);
+            DiceDamage.gameObject.SetActive(false);
+            MinotaurButton.SetActive(false);
+            playerHealthBarFull.gameObject.SetActive(false);
+            minotaurHealthBarFull.gameObject.SetActive(false);
+            PlayerTurnButton.gameObject.SetActive(false);
            
         }
 
-        playerHealthBar.gameObject.SetActive(false);
-        minotaurHealthBar.gameObject.SetActive(false);
-        PlayerTurnButton.gameObject.SetActive(false);
-        MinotaurTurnButton.gameObject.SetActive(false);
-        DiceDamage.gameObject.SetActive(false);
+       
     }
     public void Diary()
     {
@@ -712,7 +738,33 @@ public class TestMazeManager : MonoBehaviour
         }
         if (diaryRoll == 5 || diaryRoll == 6)
         {
-
+            eventButton.SetActive(false);
+            ReadButton.SetActive(false);
+            DontReadButton.SetActive(false);
+            if (!hasBracelet)
+            {
+                braceletB.SetActive(true);
+            }
+            if(!hasBrush)
+            {
+                brushB.SetActive(true);
+            }
+            if (!hasLocket)
+            {
+                locketB.SetActive(true);
+            }
+            if (!hasRing)
+            {
+                ringB.SetActive(true);
+            }
+            if (!hasPouch)
+            {
+                pouchB.SetActive(true);
+            }
+            if (!hasMirror)
+            {
+                mirrorB.SetActive(true);
+            }
         }
     }
     public void Teleportation()
@@ -735,62 +787,127 @@ public class TestMazeManager : MonoBehaviour
         UpdateButtonStates();
 
     }
-    /*    public void specialOnMove(Vector2Int direction)
-        { 
-        if (stepsRemaining > 0 && mover.Move(direction))
-        {
-            stepsRemaining--;
-            mover.SetSteps(stepsRemaining);
-            UpdateStepsText();
-            UpdateButtonStates();
-
-            if (stepsRemaining == 0)
-            {
-                //diceButton.interactable = true;
-
-                // Deactivate the specified GameObjects
-                foreach (GameObject obj in objectsToDeactivate)
-                {
-                    obj.SetActive(false);
-                }
-
-                // Activate the specified GameObjects
-                foreach (GameObject obj in objectsToActivate)
-                {
-                    obj.SetActive(true);
-                }
-
-                // Detect tag of object player is standing on
-                DetectObjectUnderPlayer();
-            }
-        }
-    }
-    public void SpecialMoveUp()
-    {
-        specialOnMove(Vector2Int.up);
-    }
-
-    public void SpeacialMoveDown()
-    {
-        specialOnMove(Vector2Int.down);
-    }
-
-    public void SpecialMoveLeft()
-    {
-        specialOnMove(Vector2Int.left);
-    }
-
-    public void SpecialMoveRight()
-    {
-        specialOnMove(Vector2Int.right);
-    }
-    private void specialUpdateStepsText()
-    {
-        stepsText.text = stepsRemaining.ToString();
-    }*/
+    
     public void StopTeleport()
     {
         stepsRemaining = 0;
         StopButton.SetActive(true);
+    }
+
+    public void GrabMirror()
+    {
+        hasMirror = true;
+        mirror.SetActive(true);
+
+        eventButton.SetActive(true);
+        
+            braceletB.SetActive(false);
+        
+       
+            brushB.SetActive(false);
+        
+            locketB.SetActive(false);
+       
+            ringB.SetActive(false);
+       
+            pouchB.SetActive(false);
+       
+            mirrorB.SetActive(false);
+        
+    }
+    public void GrabPouch()
+    {
+        hasPouch = true;
+        pouch.SetActive(true);
+        eventButton.SetActive(true);
+
+        braceletB.SetActive(false);
+
+
+        brushB.SetActive(false);
+
+        locketB.SetActive(false);
+
+        ringB.SetActive(false);
+
+        pouchB.SetActive(false);
+
+        mirrorB.SetActive(false);
+    }
+    public void GrabLocket()
+    {
+        hasLocket = true;
+        locket.SetActive(true);
+        eventButton.SetActive(true);
+
+        braceletB.SetActive(false);
+
+
+        brushB.SetActive(false);
+
+        locketB.SetActive(false);
+
+        ringB.SetActive(false);
+
+        pouchB.SetActive(false);
+
+        mirrorB.SetActive(false);
+    }
+    public void GrabBracelet()
+    {
+        hasBracelet = true;
+        bracelet.SetActive(true);
+        eventButton.SetActive(true);
+
+        braceletB.SetActive(false);
+
+
+        brushB.SetActive(false);
+
+        locketB.SetActive(false);
+
+        ringB.SetActive(false);
+
+        pouchB.SetActive(false);
+
+        mirrorB.SetActive(false);
+    }
+    public void GrabBrush()
+    {
+        hasBrush = true;
+        brush.SetActive(true);
+        eventButton.SetActive(true);
+
+        braceletB.SetActive(false);
+
+
+        brushB.SetActive(false);
+
+        locketB.SetActive(false);
+
+        ringB.SetActive(false);
+
+        pouchB.SetActive(false);
+
+        mirrorB.SetActive(false);
+    }
+    public void GrabRing()
+    {
+        hasRing = true;
+        ring.SetActive(true);
+        eventButton.SetActive(true);
+
+        braceletB.SetActive(false);
+
+
+        brushB.SetActive(false);
+
+        locketB.SetActive(false);
+
+        ringB.SetActive(false);
+
+        pouchB.SetActive(false);
+
+        mirrorB.SetActive(false);
     }
 }
